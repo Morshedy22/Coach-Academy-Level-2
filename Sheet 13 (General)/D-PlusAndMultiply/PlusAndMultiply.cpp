@@ -38,27 +38,20 @@ int main()
         int n, a, b;
         cin >> n >> a >> b;
 
-        if(a == 1)
+        ll mult = 1;
+        bool flag = 0;
+        while(mult<=n)
         {
-            if((n-1)%b == 0)    cout << "Yes" << el;
-            else                cout << "No" << el;
-        }
-        else
-        {
-            int flag = 1;
-            ll num = 1;
-            while (num<=n)
+            if(mult % b == n % b)
             {
-                if((n-num)%b == 0)
-                {
-                    cout << "Yes" << el;
-                    flag = 0;   
-                    break;
-                }    
-                num*=a;
+                flag = 1;
+                break;
             }
-            if(flag)
-                cout << "No" << el;
+            mult*=a;
+
+            if(mult == 1)
+                break;
         }
+        cout << (flag ? "Yes" : "No") << el;
     }
 }
