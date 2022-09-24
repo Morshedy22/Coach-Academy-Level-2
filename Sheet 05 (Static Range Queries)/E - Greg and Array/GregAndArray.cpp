@@ -30,35 +30,20 @@ int main()
     cin >> n >> m >> k;
 
     // vi v(n+2), prefArray(n+2), prefoperations(n+2);
-    vector<ll> v(n+2), prefArray(n+2), prefoperations(n+2);
-    
+    vector<ll> v(n+2), prefArray(n+2), prefoperations(m+2); // prefoperations(m+2) not (n+2) // bec opeartion is m
+
     for(int i=1; i<=n; i++)
         cin >> v[i];
-    
-    // //
-    // cout << "\n";
-    // cout << "Array\t";
-    // for(auto i : v) cout << i << " ";
-    // cout << "\n";
-    // //
-    
-    pair< pair<int,int>, ll >  operation[m+2];  // opeartion ->   < <l,r>, d >
+
+
+    pair< pair<ll,ll>, ll >  operation[m+1];  // opeartion ->   < <l,r>, d >
 
     for(int i=1; i<=m; i++)
         cin >> operation[i].F.F >> operation[i].F.S >> operation[i].S;
-        
 
-
-    // //
-    // cout << "\n";
-    // cout << "opeartion\n";
-    // for(auto i : operation)
-    //     cout  << i.F.F << " " << i.F.S <<" "<< i.S << "\n";
-    // cout << "\n";
-    // //
 
     while(k--)
-    {
+    {  
         int x, y;
         cin >> x >> y;
 
@@ -66,36 +51,20 @@ int main()
         prefoperations[y+1]-=1;
     }
 
-    for(int i=1; i<=n+1; i++)
+
+    for(int i=1; i<=m+1; i++)
         prefoperations[i] += prefoperations[i-1];
 
-    // //
-    // cout << "\n";
-    // cout << "prefoperations\t";
-    // for(auto i : prefoperations)
-    //     cout << i << " ";
-    // cout << "\n";
-    // //
 
 
-    for(int i=1; i<=n; i++)
+    for(int i=1; i<=m; i++) // loop until m not n bec i loop forall opearions
     {
         prefArray[ operation[i].F.F ] += (operation[i].S * prefoperations[i]) ;  // opeartion[i].F.F that mean l
         prefArray[ operation[i].F.S +1] -= (operation[i].S * prefoperations[i]) ; // opeartion[i].F.S that mean r
-        
-        // //
-        // cout << prefArray[ operation[i-1].F.F ] << " " << prefArray[ operation[i-1].F.S +1] << endl;
-        // //
+
     }
 
-    
-    
-    // //
-    // cout << "\n";
-    // for(auto i : prefArray)
-    //     cout << i << " ";
-    // cout << "\n";
-    // //
+
 
     for(int i=1; i<=n+1; i++)
         prefArray[i] += prefArray[i-1];
