@@ -18,7 +18,6 @@ typedef vector<pii> vii;
 
 const int INF = 0x3f3f3f3f;
 const ll INFL = 0x3f3f3f3f3f3f3f3fLL;
-const int N = 2e5+5;
 
 /*
 ---> وتظل تسعى جاهدا في همةٍ   ..  والله يعطي من يشاءُ إذا شكر <---
@@ -29,33 +28,26 @@ int main()
 {
     FIO
 
-    vi arr(N);
-
-    int L = 0, R = 0;
-    int q, id;
-    char ch;
-    cin >> q;
-    
-    //first input
-    cin >> ch >> id;
-    arr[id] = L;
-    L--, R++, q--;
-
-    while(q--)
+    int t, n;
+    cin >> t;
+    while(t--)
     {
-        int mn;
-        cin >> ch >> id;
-
-        if(ch == 'L')
-            arr[id] = L--;
-        else if(ch == 'R')
-            arr[id] = R++;
-        else if(ch == '?')
+        cin >> n;
+        string temp, curr = "0";
+        cin >> temp;
+        curr += temp;
+        int leftmost = 1, rightmost = n;
+        for(int i=1; i<=n; i++)
         {
-            mn = min(abs(arr[id] - L - 1), abs(R - arr[id] - 1));
-            cout << mn << endl;
+            if(curr[leftmost] != '1') 
+                leftmost++;
+            if(curr[rightmost] != '1')
+                rightmost--;
         }
-
-    }
+        cout << ( rightmost == 0 ? n : max(2*rightmost, 2*(n-leftmost+1)) ) << el;
+        
+    }    
+        
+        
     return 0;
 }

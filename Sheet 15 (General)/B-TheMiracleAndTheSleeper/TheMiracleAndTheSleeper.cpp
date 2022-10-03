@@ -18,7 +18,6 @@ typedef vector<pii> vii;
 
 const int INF = 0x3f3f3f3f;
 const ll INFL = 0x3f3f3f3f3f3f3f3fLL;
-const int N = 2e5+5;
 
 /*
 ---> وتظل تسعى جاهدا في همةٍ   ..  والله يعطي من يشاءُ إذا شكر <---
@@ -29,33 +28,19 @@ int main()
 {
     FIO
 
-    vi arr(N);
-
-    int L = 0, R = 0;
-    int q, id;
-    char ch;
-    cin >> q;
-    
-    //first input
-    cin >> ch >> id;
-    arr[id] = L;
-    L--, R++, q--;
-
-    while(q--)
+    int t; 
+    cin >> t;
+    int l, r;
+    while(t--)
     {
-        int mn;
-        cin >> ch >> id;
+        cin >> l >> r;
 
-        if(ch == 'L')
-            arr[id] = L--;
-        else if(ch == 'R')
-            arr[id] = R++;
-        else if(ch == '?')
-        {
-            mn = min(abs(arr[id] - L - 1), abs(R - arr[id] - 1));
-            cout << mn << endl;
-        }
+        int b = r/2;
+
+        if(b >=l)
+            cout << r % (b+1) << el;
+        else
+            cout << r % l << el;
 
     }
-    return 0;
 }
