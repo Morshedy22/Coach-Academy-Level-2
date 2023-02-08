@@ -27,7 +27,52 @@ const ll INFL = 0x3f3f3f3f3f3f3f3fLL;
 int main()
 {
     FIO
+    int t, n;
+    cin >> t;
 
+    while(t--)
+    {
+        cin >> n;
+        int arr[n+1][5];
+
+        for(int i=1; i<=n; i++)
+            for(int j=0; j<5; j++)
+                cin >> arr[i][j];
+
+
+        int medal = 1;
+        
+        for(int i=2; i<=n; i++)
+        {
+            int cnt = 0;
+            for(int j = 0; j<5; j++)
+            {
+                if(arr[i][j] < arr[medal][j]) // less than 3shan yksb
+                    cnt++;
+            }
+            if(cnt>=3)
+                medal = i;
+        }
+        
+        for(int i=1; i<=n; i++)
+        {
+            if(i == medal)
+                continue;
+            
+            int cnt = 0;
+            for(int j=0; j<5; j++)
+            {
+                if( arr[medal][j] < arr[i][j])
+                    cnt++;
+            }
+
+            if(cnt<3)
+                medal = -1;
+        }
+
+        cout << medal << '\n';
+        
+    }
 
     return 0;
 }
